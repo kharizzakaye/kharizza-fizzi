@@ -6,9 +6,12 @@ import { TextSplitter } from "@/components/TextSplitter";
 import { asText, Content } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -56,7 +59,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         duration: 0.6
       });
 
-      
+
 
       const scrollTl = gsap.timeline({
         scrollTrigger: {
