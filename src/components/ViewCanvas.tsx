@@ -1,6 +1,8 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber"; 
+import { Environment } from "@react-three/drei";
+import FloatingCan from "@/components/FloatingCan";
 
 type Props = {}
 
@@ -32,8 +34,15 @@ export default function ViewCanvas({}: Props) {
             <meshStandardMaterial color={"hotpink"} />
         </mesh>
 
-        <ambientLight intensity={2} />
-        <spotLight intensity={3} position={[1, 1, 1]} />
+        <FloatingCan />
+
+        <Environment
+            files="/hdr/lobby.hdr"
+            environmentIntensity={1.5}
+        />
+
+        {/* <ambientLight intensity={2} />
+        <spotLight intensity={3} position={[1, 1, 1]} /> */}
     </Canvas>
   )
 }
