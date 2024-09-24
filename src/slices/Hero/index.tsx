@@ -1,9 +1,15 @@
+"use client";
+
 import { Bounded } from "@/components/Bounded";
 import Button from "@/components/Button";
 import { TextSplitter } from "@/components/TextSplitter";
 import { asText, Content } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP);
 
 /**
  * Props for `Hero`.
@@ -14,6 +20,39 @@ export type HeroProps = SliceComponentProps<Content.HeroSlice>;
  * Component for "Hero" Slices.
  */
 const Hero = ({ slice }: HeroProps): JSX.Element => {
+
+  useGSAP(() => {
+    const introTl = gsap.timeline();
+
+    introTl
+    .set(".hero", { opacity: 1 })
+    .from(".hero-header-word", {
+      scale: 3,
+      opacity: 0,
+      ease: "power4.in",
+      delay: 0.3,
+      stagger: 1,
+    })
+    .from(".hero-subheading", 
+      {
+        opacity: 0,
+        y: 30,
+      }, "+=.8", // wait .8 before start (position parameter)
+    )
+    .from(".hero-body", 
+    {
+      opacity: 0,
+      y: 10,
+    })
+    .from(".hero-button", 
+      {
+        opacity: 0,
+        y: 10,
+        duration: 0.6
+      })
+  });
+
+
   return (
     <Bounded
       data-slice-type={slice.slice_type}
