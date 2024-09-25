@@ -21,8 +21,10 @@ export default function SliceSimulatorPage({
   const slices = getSlices(searchParams.state);
 
   return (
-    <SliceSimulator>
-      <SliceZone slices={slices} components={components} />
+    <SliceSimulator background="" zIndex={10}>
+      <div className="max-h-[900px]">
+        <SliceZone slices={slices} components={components} />
+      </div>
     </SliceSimulator>
   );
 }

@@ -2,12 +2,23 @@
 
 import { Canvas } from "@react-three/fiber"; 
 import { View } from "@react-three/drei";
+import { Suspense } from "react";
+// import { Perf } from "r3f-perf";
+import dynamic from "next/dynamic";
+
+// display only loader when needed
+const Loader =  dynamic(
+  () => import("@react-three/drei").then((mod) => mod.Loader), {
+    ssr: false
+  },
+)
 
 type Props = {}
 
 export default function ViewCanvas({}: Props) {
   return (
-    <Canvas
+    <>
+      <Canvas
         style={{
             position: "fixed",
             top: 0,
@@ -25,11 +36,18 @@ export default function ViewCanvas({}: Props) {
             fov: 30
         }}
     >
-
+      <Suspense fallback={null}>
         <View.Port />
+      </Suspense>
 
-        {/* <ambientLight intensity={2} />
-        <spotLight intensity={3} position={[1, 1, 1]} /> */}
-    </Canvas>
+      
+      {/* <Perf /> */}
+
+      {/* <ambientLight intensity={2} />
+      <spotLight intensity={3} position={[1, 1, 1]} /> */}
+      </Canvas>
+
+      <Loader />
+    </>
   )
 }
