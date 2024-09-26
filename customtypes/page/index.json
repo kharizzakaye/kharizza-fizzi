@@ -27,6 +27,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "alternating_text": {
+              "type": "SharedSlice"
+            },
             "carousel": {
               "type": "SharedSlice"
             },
